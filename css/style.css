@@ -92,10 +92,20 @@ a:hover{color:var(--copper-light)}
   border-bottom:1px solid rgba(239,233,223,.12);
 }
 .nav-brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
   font:600 13px/1 var(--mono);
   color:var(--parchment);
   letter-spacing:.14em;
   text-transform:uppercase;
+}
+.nav-logo{
+  width:32px;
+  height:32px;
+  border-radius:50%;
+  object-fit:cover;
+  box-shadow:0 0 0 1px rgba(239,233,223,.15);
 }
 .nav-links{
   display:flex;
@@ -114,16 +124,6 @@ a:hover{color:var(--copper-light)}
   padding:96px 56px 110px;
   text-align:center;
   overflow:hidden;
-}
-.fa-badge{
-  position:relative;
-  width:132px;
-  height:132px;
-  margin:0 auto 36px;
-  border-radius:50%;
-  box-shadow:0 0 0 1px rgba(239,233,223,.15);
-  object-fit:cover;
-  display:block;
 }
 .hero-kicker{
   position:relative;
