@@ -37,6 +37,12 @@
 
     <!-- HERO -->
     <section class="hero">
+      <video class="hero-video" id="hero-video" autoplay muted loop playsinline preload="none"
+        poster="videos/site/hero-poster-curtain.jpg" data-loop-start="3" data-loop-end="6.5">
+        <source src="videos/site/hero-loop-curtain-mobile.mp4" type="video/mp4" media="(max-width:640px)">
+        <source src="videos/site/hero-loop-curtain.mp4" type="video/mp4">
+      </video>
+      <div class="hero-overlay"></div>
       <div class="fa-grain"></div>
       <div class="hero-kicker">Handwrapped &amp; Handmade in BC</div>
       <h1 class="hero-title">Wire-wrapped <em>trinkets</em><br>worthy of a witch</h1>
@@ -61,23 +67,19 @@
       </div>
       <div class="product-grid">
         <article class="product">
-          <img class="product-photo" src="images/products/amethyst-900.jpg"
-            srcset="images/products/amethyst-480.webp 480w,
+          <img class="product-photo" src="images/products/amethyst-900.jpg" srcset="images/products/amethyst-480.webp 480w,
                     images/products/amethyst-900.webp 900w,
                     images/products/amethyst-1400.webp 1400w"
-            sizes="(max-width:640px) 90vw, (max-width:900px) 45vw, 30vw"
-            alt="Amethyst Cigarette Holder" loading="lazy">
+            sizes="(max-width:640px) 90vw, (max-width:900px) 45vw, 30vw" alt="Amethyst Cigarette Holder" loading="lazy">
           <div class="product-meta">
             <span class="product-name">Amethyst Cigarette Holder</span>
             <span class="product-price">$35</span>
           </div>
         </article>
         <article class="product">
-          <img class="product-photo" src="images/products/topaz-900.jpg"
-            srcset="images/products/topaz-480.webp 480w,
+          <img class="product-photo" src="images/products/topaz-900.jpg" srcset="images/products/topaz-480.webp 480w,
                     images/products/topaz-900.webp 900w,
-                    images/products/topaz-1400.webp 1400w"
-            sizes="(max-width:640px) 90vw, (max-width:900px) 45vw, 30vw"
+                    images/products/topaz-1400.webp 1400w" sizes="(max-width:640px) 90vw, (max-width:900px) 45vw, 30vw"
             alt="Topaz bubble blower" loading="lazy">
           <div class="product-meta">
             <span class="product-name">Topaz bubble blower</span>
@@ -85,12 +87,10 @@
           </div>
         </article>
         <article class="product">
-          <img class="product-photo" src="images/products/malachite-900.jpg"
-            srcset="images/products/malachite-480.webp 480w,
+          <img class="product-photo" src="images/products/malachite-900.jpg" srcset="images/products/malachite-480.webp 480w,
                     images/products/malachite-900.webp 900w,
                     images/products/malachite-1400.webp 1400w"
-            sizes="(max-width:640px) 90vw, (max-width:900px) 45vw, 30vw"
-            alt="Malachite Pot Stake" loading="lazy">
+            sizes="(max-width:640px) 90vw, (max-width:900px) 45vw, 30vw" alt="Malachite Pot Stake" loading="lazy">
           <div class="product-meta">
             <span class="product-name">Malachite Pot Stake</span>
             <span class="product-price">$49</span>
@@ -152,6 +152,21 @@
   </div>
 
   <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+  <script>
+    (function () {
+      var video = document.getElementById('hero-video');
+      if (!video) return;
+      var start = parseFloat(video.dataset.loopStart || '0');
+      var end = parseFloat(video.dataset.loopEnd || video.duration || '0');
+      var seeked = false;
+      video.addEventListener('loadedmetadata', function () {
+        if (!seeked) { video.currentTime = start; seeked = true; }
+      });
+      video.addEventListener('timeupdate', function () {
+        if (video.currentTime >= end) video.currentTime = start;
+      });
+    })();
+  </script>
 </body>
 
 </html>
