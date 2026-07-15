@@ -38,10 +38,9 @@
     <!-- HERO -->
     <section class="hero">
       <video class="hero-video" id="hero-video" autoplay muted loop playsinline preload="none"
-        poster="videos/site/hero-poster-c0021.jpg" data-loop-start="2" data-loop-end="6">
-        <source src="videos/site/hero-loop-c0021-mobile.mp4" type="video/mp4" media="(max-width:640px)">
-        <source src="videos/site/hero-loop-c0021.mp4" type="video/mp4">
-      </video>
+        poster="videos/site/hero-poster-c0021.jpg" data-loop-start="2" data-loop-end="6"
+        data-src-desktop="videos/site/hero-loop-c0021.mp4"
+        data-src-mobile="videos/site/hero-loop-c0021-mobile.mp4"></video>
       <div class="hero-overlay"></div>
       <div class="fa-grain"></div>
       <div class="hero-kicker">Handwrapped &amp; Handmade in BC</div>
@@ -185,6 +184,8 @@
     (function () {
       var video = document.getElementById('hero-video');
       if (!video) return;
+      var isMobile = window.matchMedia('(max-width:640px)').matches;
+      video.src = isMobile ? video.dataset.srcMobile : video.dataset.srcDesktop;
       var start = parseFloat(video.dataset.loopStart || '0');
       var end = parseFloat(video.dataset.loopEnd || video.duration || '0');
       var seeked = false;
