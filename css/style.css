@@ -177,7 +177,7 @@ a:hover{color:var(--copper-light)}
   grid-template-columns:repeat(3,1fr);
   gap:28px;
 }
-.product-photo{ aspect-ratio:4/5 }
+.product-photo{ aspect-ratio:4/5; width:100%; object-fit:cover; display:block }
 .product-meta{
   padding:18px 4px 0;
   display:flex;
