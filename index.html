@@ -186,6 +186,8 @@
       if (!video) return;
       var isMobile = window.matchMedia('(max-width:640px)').matches;
       video.src = isMobile ? video.dataset.srcMobile : video.dataset.srcDesktop;
+      var playPromise = video.play();
+      if (playPromise) playPromise.catch(function () { });
       var start = parseFloat(video.dataset.loopStart || '0');
       var end = parseFloat(video.dataset.loopEnd || video.duration || '0');
       var seeked = false;
