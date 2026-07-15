@@ -439,7 +439,12 @@ a:hover {
   }
 
   .hero {
-    padding: 64px 20px 70px
+    padding: 64px 20px 70px;
+    min-height: calc(100vh - var(--nav-h, 92px));
+    min-height: calc(100svh - var(--nav-h, 92px));
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
   .hero-title {

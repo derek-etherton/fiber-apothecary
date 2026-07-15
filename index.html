@@ -22,7 +22,7 @@
   <div class="page">
 
     <!-- NAV -->
-    <header class="nav">
+    <header class="nav" id="site-nav">
       <div class="nav-brand">
         <img src="images/logo.png" alt="" class="nav-logo">
         Fiber Apothecary
@@ -152,6 +152,17 @@
   </div>
 
   <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+  <script>
+    (function () {
+      var nav = document.getElementById('site-nav');
+      if (!nav) return;
+      function setNavHeight() {
+        document.documentElement.style.setProperty('--nav-h', nav.offsetHeight + 'px');
+      }
+      setNavHeight();
+      window.addEventListener('resize', setNavHeight);
+    })();
+  </script>
   <script>
     (function () {
       var video = document.getElementById('hero-video');
