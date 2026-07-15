@@ -120,9 +120,25 @@
         <h2>From raw stone to worn charm</h2>
       </div>
       <div class="process-grid">
-        <div class="fa-ph process-photo">[ b-roll — sourcing<br>raw crystal ]</div>
-        <div class="fa-ph process-photo">[ b-roll — hand<br>coiling wire ]</div>
-        <div class="fa-ph process-photo">[ b-roll — finished<br>piece, worn ]</div>
+        <img class="process-photo" src="images/process/bench-1-900.jpg" srcset="images/process/bench-1-480.webp 480w,
+                    images/process/bench-1-900.webp 900w,
+                    images/process/bench-1-1400.webp 1400w"
+          sizes="(max-width:640px) 90vw, (max-width:900px) 45vw, 30vw" alt="Raw materials laid out for sourcing"
+          loading="lazy">
+        <div class="process-item">
+          <video class="process-photo process-video" muted loop playsinline preload="metadata"
+            poster="videos/site/bench-2-poster.jpg">
+            <source src="videos/site/bench-2.mp4" type="video/mp4">
+          </video>
+          <div class="process-overlay"></div>
+        </div>
+        <div class="process-item">
+          <video class="process-photo process-video" muted loop playsinline preload="metadata"
+            poster="videos/site/bench-3-poster.jpg">
+            <source src="videos/site/bench-3.mp4" type="video/mp4">
+          </video>
+          <div class="process-overlay"></div>
+        </div>
       </div>
     </section>
 
@@ -130,13 +146,15 @@
     <section class="instagram">
       <div class="eyebrow eyebrow-copper">@thefiberapothecary</div>
       <h2 class="instagram-title">Follow along for restocks &amp; new curses</h2>
-      <div class="instagram-grid">
-        <div class="fa-ph insta-tile"></div>
-        <div class="fa-ph insta-tile"></div>
-        <div class="fa-ph insta-tile"></div>
-        <div class="fa-ph insta-tile"></div>
-        <div class="fa-ph insta-tile"></div>
-      </div>
+      <a href="https://www.instagram.com/thefiberapothecary/" target="_blank" rel="noopener" class="btn btn-outline">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+          stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="3" y="3" width="18" height="18" rx="5" />
+          <circle cx="12" cy="12" r="4" />
+          <circle cx="17.5" cy="6.5" r=".6" fill="currentColor" stroke="none" />
+        </svg>
+        Follow on Instagram
+      </a>
     </section>
 
     <!-- FOOTER -->
@@ -176,6 +194,35 @@
       video.addEventListener('timeupdate', function () {
         if (video.currentTime >= end) video.currentTime = start;
       });
+    })();
+  </script>
+  <script>
+    (function () {
+      var videos = document.querySelectorAll('.process-video');
+      if (!videos.length) return;
+      var isSingleColumn = function () { return window.matchMedia('(max-width:640px)').matches; };
+
+      videos.forEach(function (video) {
+        var item = video.closest('.process-item');
+        video.addEventListener('play', function () { if (item) item.classList.add('is-playing'); });
+        video.addEventListener('pause', function () { if (item) item.classList.remove('is-playing'); });
+        video.addEventListener('mouseenter', function () {
+          if (!isSingleColumn()) video.play();
+        });
+        video.addEventListener('mouseleave', function () {
+          if (!isSingleColumn()) video.pause();
+        });
+      });
+
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          var video = entry.target;
+          if (!isSingleColumn()) return;
+          if (entry.isIntersecting) video.play();
+          else video.pause();
+        });
+      }, { threshold: 0.5 });
+      videos.forEach(function (video) { observer.observe(video); });
     })();
   </script>
 </body>
