@@ -22,58 +22,23 @@
 <body>
 
   <div class="page">
-
-    <!-- NAV -->
-    <!-- <header class="nav" id="site-nav">
-      <div class="nav-brand">
-        <img src="images/logo.png" alt="" class="nav-logo">
-        Fiber Apothecary
-      </div>
-      <nav class="nav-links">
-        <a href="#shop">Shop</a>
-        <a href="#story">Story</a>
-        <a href="#process">Process</a>
-        <a href="https://www.instagram.com/thefiberapothecary/" target="_blank" rel="noopener">Instagram</a>
-      </nav>
-    </header> -->
-
     <!-- HERO -->
     <section class="hero">
-      <video class="hero-video" id="hero-video" autoplay muted loop playsinline preload="none"
-        poster="videos/site/hero-poster-c0021.jpg" data-loop-start="2" data-loop-end="6"
-        data-src-desktop="videos/site/hero-loop-c0021.mp4"
-        data-src-mobile="videos/site/hero-loop-c0021-mobile.mp4"></video>
-      <div class="hero-overlay"></div>
-      <div class="fa-grain"></div>
-      <!-- <div class="hero-kicker">Handwrapped &amp; Handmade in BC</div> -->
-      <h1 class="hero-title"> Fiber Apothecary </h1>
-      <!-- <p class="hero-sub">Gemstones, glass beads, hand-twisted silver and copper. One-of-one pieces bound by wire.</p> -->
-      <!-- <div class="hero-actions">
-        <a href="#shop" class="btn btn-solid">The Collection</a>
-        <a href="https://www.instagram.com/thefiberapothecary/" target="_blank" rel="noopener"
-          class="btn btn-outline">Follow
-          @thefiberapothecary</a>
-      </div> -->
+      <h1 class="hero-title"> the fiber apothecary </h1>
+
     </section>
 
-    <!-- DIVIDER -->
-    <!-- <div class="divider">
-      <span>✦ CUT, COILED, HAMMERED BY HAND IN BC ✦</span>
-    </div> -->
-
-    <!-- FEATURED GRID -->
     <section class="collection" id="shop">
-      <!-- <div class="section-heading">
-        <div class="eyebrow eyebrow-rust">The Collection</div>
-      </div> -->
       <div class="product-grid">
         {% assign products = site.products %}
         {% for product in products %}
-        <article class="product">
+        {% assign ar = product.width | times: 1.0 | divided_by: product.height | round: 4 %}
+        <article class="product" style="--ar: {{ ar }}">
           <img class="product-photo" src="{{ product.image }}" srcset="{{ product.small.url }} {{ product.small.width }}w,
                       {{ product.medium.url }} {{ product.medium.width }}w,
-                      {{ product.large.url }} {{ product.large.width }}w"
-            sizes="(max-width:640px) 90vw, (max-width:900px) 45vw, 22vw" alt="{{ product.name }}" loading="lazy">
+                      {{ product.large.url }} {{ product.large.width }}w" width="{{ product.width }}"
+            height="{{ product.height }}" sizes="(max-width:640px) 90vw, (max-width:900px) 50vw, 33vw"
+            alt="{{ product.name }}" loading="lazy">
           {% if product.name %}
           <div class="product-meta">
             <span class="product-name">{{ product.name }}</span>
@@ -82,23 +47,22 @@
         </article>
         {% endfor %}
       </div>
+
       <div class="collection-footer">
-        <a href="https://fiberapothecary.square.site/" class="view-shop">View full shop →</a>
+        <a href="https://fiberapothecary.square.site/">the workbench →</a>
       </div>
     </section>
 
-    <!-- INSTAGRAM CTA -->
-    <section class="instagram">
+    <!-- <section class="instagram">
       <a href="https://www.instagram.com/thefiberapothecary/" target="_blank" rel="noopener">
         <div class="eyebrow eyebrow-copper">@thefiberapothecary</div>
       </a>
-    </section>
+    </section> -->
 
-    <!-- FOOTER -->
     <footer class="footer">
       <div class="footer-copy">© <span id="year"></span> The Fiber Apothecary, British Columbia</div>
       <div class="footer-links">
-        <a href="https://www.instagram.com/thefiberapothecary/" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.instagram.com/thefiberapothecary/" target="_blank" rel="noopener">@thefiberapothecary</a>
         <a href="mailto:hello@fiberapothecary.com">Contact</a>
         <a href="#shipping">Shipping</a>
         <a href="https://www.dafont.com/radio-newsman.font">Font by Shara Weber</a>
@@ -108,65 +72,6 @@
   </div>
 
   <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
-  <script>
-    (function () {
-      var nav = document.getElementById('site-nav');
-      if (!nav) return;
-      function setNavHeight() {
-        document.documentElement.style.setProperty('--nav-h', nav.offsetHeight + 'px');
-      }
-      setNavHeight();
-      window.addEventListener('resize', setNavHeight);
-    })();
-  </script>
-  <script>
-    (function () {
-      var video = document.getElementById('hero-video');
-      if (!video) return;
-      var isMobile = window.matchMedia('(max-width:640px)').matches;
-      video.src = isMobile ? video.dataset.srcMobile : video.dataset.srcDesktop;
-      var playPromise = video.play();
-      if (playPromise) playPromise.catch(function () { });
-      var start = parseFloat(video.dataset.loopStart || '0');
-      var end = parseFloat(video.dataset.loopEnd || video.duration || '0');
-      var seeked = false;
-      video.addEventListener('loadedmetadata', function () {
-        if (!seeked) { video.currentTime = start; seeked = true; }
-      });
-      video.addEventListener('timeupdate', function () {
-        if (video.currentTime >= end) video.currentTime = start;
-      });
-    })();
-  </script>
-  <!-- <script>
-    (function () {
-      var videos = document.querySelectorAll('.process-video');
-      if (!videos.length) return;
-      var isSingleColumn = function () { return window.matchMedia('(max-width:640px)').matches; };
-
-      videos.forEach(function (video) {
-        var item = video.closest('.process-item');
-        video.addEventListener('play', function () { if (item) item.classList.add('is-playing'); });
-        video.addEventListener('pause', function () { if (item) item.classList.remove('is-playing'); });
-        video.addEventListener('mouseenter', function () {
-          if (!isSingleColumn()) video.play();
-        });
-        video.addEventListener('mouseleave', function () {
-          if (!isSingleColumn()) video.pause();
-        });
-      });
-
-      var observer = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          var video = entry.target;
-          if (!isSingleColumn()) return;
-          if (entry.isIntersecting) video.play();
-          else video.pause();
-        });
-      }, { threshold: 0.5 });
-      videos.forEach(function (video) { observer.observe(video); });
-    })();
-  </script> -->
 </body>
 
 </html>
