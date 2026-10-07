@@ -2,6 +2,12 @@
 .DS_Store
 Thumbs.db
 
+# Jekyll build output and caches
+_site/
+.jekyll-cache/
+.sass-cache/
+Gemfile.lock
+
 # unprocessed camera originals — kept locally, never committed
 images/raw/
 videos/raw/

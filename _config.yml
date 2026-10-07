@@ -1,0 +1,10 @@
+title: The Fiber Apothecary
+
+# Keep large/local-only folders out of the built site.
+exclude:
+  - dev/
+  - images/raw/
+  - videos/raw/
+  - Gemfile
+  - Gemfile.lock
+  - .claude/
