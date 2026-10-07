@@ -1,3 +1,12 @@
+@font-face {
+  font-family: 'RadioNewsman';
+  src: url('../fonts/RadioNewsman.woff') format('woff'),
+    url('../fonts/RadioNewsman.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --ink: #171310;
   --ink-deep: #0f0d0a;
@@ -10,7 +19,7 @@
   --copper: #a9825f;
   --copper-light: #c9a377;
 
-  --serif: 'Spectral', serif;
+  --serif: 'RadioNewsman', serif;
   --script: 'Cormorant Garamond', serif;
   --mono: 'Special Elite', monospace;
 }
@@ -202,7 +211,9 @@ a:hover {
 
 .hero-title {
   position: relative;
-  font: 400 88px/1.05 var(--serif);
+  font-size: 72px;
+  font-weight: 100;
+  /* font: 400 88px/1.05 var(--serif); */
   color: var(--parchment);
   margin: 0 0 26px;
   letter-spacing: -.01em;
@@ -247,7 +258,7 @@ a:hover {
 /* COLLECTION */
 .collection {
   background: var(--parchment);
-  padding: 80px 56px
+  padding: 16px;
 }
 
 .product-grid {
