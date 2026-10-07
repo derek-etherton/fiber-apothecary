@@ -1,3 +1,5 @@
+---
+---
 <!DOCTYPE html>
 <html lang="en">
 
@@ -65,47 +67,20 @@
         <div class="eyebrow eyebrow-rust">The Collection</div>
       </div> -->
       <div class="product-grid">
-        {% for product in site.products %}
+        {% assign products = site.products %}
+        {% for product in products %}
         <article class="product">
-          <img class="product-photo" src="{{ product.url }}" srcset="{{ product.small.url }} {{ product.small.width }},
-                      {{ product.medium.url }} {{ product.medium.width }},
-                      {{ product.large.url }} {{ product.large.width }}"
-            sizes="(max-width:640px) 90vw, (max-width:900px) 45vw, 30vw" alt="{{ product.name }}" loading="lazy">
+          <img class="product-photo" src="{{ product.image }}" srcset="{{ product.small.url }} {{ product.small.width }}w,
+                      {{ product.medium.url }} {{ product.medium.width }}w,
+                      {{ product.large.url }} {{ product.large.width }}w"
+            sizes="(max-width:640px) 90vw, (max-width:900px) 45vw, 22vw" alt="{{ product.name }}" loading="lazy">
+          {% if product.name %}
           <div class="product-meta">
             <span class="product-name">{{ product.name }}</span>
-            <span class="product-price">{{ product.price }}</span>
           </div>
+          {% endif %}
         </article>
-        <!-- <article class="product">
-          <img class="product-photo" src="images/products/amethyst-900.jpg" srcset="images/products/amethyst-480.webp 480w,
-                    images/products/amethyst-900.webp 900w,
-                    images/products/amethyst-1400.webp 1400w"
-            sizes="(max-width:640px) 90vw, (max-width:900px) 45vw, 30vw" alt="Amethyst bubble blower" loading="lazy">
-          <div class="product-meta">
-            <span class="product-name">Amethyst bubble blower</span>
-            <span class="product-price">$35</span>
-          </div>
-        </article>
-        <article class="product">
-          <img class="product-photo" src="images/products/topaz-900.jpg" srcset="images/products/topaz-480.webp 480w,
-                    images/products/topaz-900.webp 900w,
-                    images/products/topaz-1400.webp 1400w" sizes="(max-width:640px) 90vw, (max-width:900px) 45vw, 30vw"
-            alt="Topaz tea buddy" loading="lazy">
-          <div class="product-meta">
-            <span class="product-name">Topaz tea buddy</span>
-            <span class="product-price">$25</span>
-          </div>
-        </article>
-        <article class="product">
-          <img class="product-photo" src="images/products/malachite-900.jpg" srcset="images/products/malachite-480.webp 480w,
-                    images/products/malachite-900.webp 900w,
-                    images/products/malachite-1400.webp 1400w"
-            sizes="(max-width:640px) 90vw, (max-width:900px) 45vw, 30vw" alt="Malachite pot stake" loading="lazy">
-          <div class="product-meta">
-            <span class="product-name">Malachite pot stake</span>
-            <span class="product-price">$49</span>
-          </div>
-        </article> -->
+        {% endfor %}
       </div>
       <div class="collection-footer">
         <a href="https://fiberapothecary.square.site/" class="view-shop">View full shop →</a>

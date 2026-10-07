@@ -10,4 +10,5 @@ Gemfile.lock
 
 # unprocessed camera originals — kept locally, never committed
 images/raw/
+images/gallery/raw/
 videos/raw/

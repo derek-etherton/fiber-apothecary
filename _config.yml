@@ -1,9 +1,14 @@
 title: The Fiber Apothecary
 
+collections:
+  products:
+    output: false
+
 # Keep large/local-only folders out of the built site.
 exclude:
   - dev/
   - images/raw/
+  - images/gallery/raw/
   - videos/raw/
   - Gemfile
   - Gemfile.lock

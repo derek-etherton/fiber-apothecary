@@ -44,7 +44,6 @@ a:hover {
 }
 
 .page {
-  max-width: 1400px;
   margin: 0 auto;
   background: #fff;
 }
@@ -170,7 +169,7 @@ a:hover {
 .hero {
   position: relative;
   background: var(--ink);
-  padding: 96px 56px 110px;
+  padding: 128px 56px 110px;
   text-align: center;
   overflow: hidden;
 }
@@ -259,19 +258,40 @@ a:hover {
 .collection {
   background: var(--parchment);
   padding: 16px;
+  overflow-x: clip;
 }
 
 .product-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 28px;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
 }
 
 .product-photo {
   aspect-ratio: 4/5;
   width: 100%;
   object-fit: cover;
-  display: block
+  display: block;
+  position: relative;
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+
+@media (hover:hover) {
+  .product:hover {
+    z-index: 2;
+    position: relative;
+  }
+
+  .product:hover .product-photo {
+    transform: scale(1.2);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, .35);
+  }
+}
+
+@media (prefers-reduced-motion:reduce) {
+  .product-photo {
+    transition: none
+  }
 }
 
 .product-meta {
