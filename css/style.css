@@ -169,7 +169,7 @@ a {
   position: relative;
   background-image: url("../images/banner.png");
   background-repeat: no-repeat;
-  background-position: right;
+  background-position: start;
   background-size: cover;
 
   text-align: start;
@@ -247,19 +247,6 @@ a {
   text-align: center;
 }
 
-/* INSTAGRAM */
-.instagram {
-  background: var(--ink);
-  padding: 70px 56px;
-  text-align: center
-}
-
-.instagram-title {
-  font: 400 34px var(--serif);
-  color: var(--parchment);
-  margin: 0 0 30px
-}
-
 /* FOOTER */
 .footer {
   background: var(--ink-deep);
@@ -295,21 +282,35 @@ a {
 /* RESPONSIVE */
 @media (max-width:900px) {
   .product-grid {
-    --row-h: 28vw
+    --row-h: 33vw
+  }
+
+  .collection {
+    padding: 16px;
+  }
+
+  .product-grid {
+    gap: 8px;
+  }
+
+  .hero {
+    padding: 16px;
+  }
+
+  .hero-title {
+    text-align: center;
+    font-size: 24px;
   }
 }
 
 @media (max-width:640px) {
-  .product-grid {
-    --row-h: 50vw
+  .footer {
+    padding: 16px 8px;
   }
 
-  .process-grid {
-    grid-template-columns: 1fr
-  }
-
-  .instagram {
-    padding: 48px 20px
+  .footer-links {
+    justify-content: center;
+    flex-wrap: wrap;
   }
 
   .footer {
